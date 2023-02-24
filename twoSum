@@ -1,0 +1,24 @@
+public class twosum {
+    public static int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer,Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < nums.length; i++){
+            //checks if target - number chosen is in the map. 
+            //if its within the map, that means an existing number + the current one = target value.
+            //we then break the loop to save time if we find the answer. 
+            if(map.containsKey(target - nums[i])){
+                result[1] = i;
+                result[0] = map.get(target - nums[i]);
+                System.out.println("first runs");
+                break;
+            }
+            //if the 2 numbers dont exist, we put in the first number into the map, to be used as a checker for the next numbers.
+            //this lowers down the time complexity to O(n)
+            System.out.println("second: " + nums[i] + " " + i);
+            map.put(nums[i],i);
+        }
+        
+        return result;
+    }    
+}
